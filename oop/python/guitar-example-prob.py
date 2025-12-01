@@ -35,3 +35,10 @@ if results:
 else:
     print("No matching instruments found.")
 
+
+"""Description of the Problem and Enhancement Goal
+
+This short Python example mimics the limitations found in Rick’s shiny new application in Chapter 1. The function find_instrument tries to satisfy the customer requirement of searching the inventory, but it achieves this with inflexible design.
+
+The primary problem is that the search criteria are hardcoded directly within the search function. This approach forces the system to iterate over all choices, checking each instrument against explicit criteria (like type, numStrings, and model).
+"""
