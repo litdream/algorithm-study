@@ -12,3 +12,6 @@ https://cseweb.ucsd.edu/~dasgupta/book/
   - or https://highered.mheducation.com/sites/0073523402/
 
 
+
+## Examples simulating the algorithm
+
