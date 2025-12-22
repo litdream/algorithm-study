@@ -1,5 +1,11 @@
+"""Sample usage:
+
+$ python3 dijkstra.py directed-graph.json A | jq
+
+"""
 
 import json
+import os, sys
 
 def dijkstra(graph, start):
     distances = {node: float('inf') for node in graph}
@@ -26,13 +32,27 @@ def dijkstra(graph, start):
     return predecessors
 
 if __name__ == '__main__':
-    with open('graph.json', 'r') as f:
-        data = json.load(f)
-        
-    original_graph = data['graph']
-    nodes = data['nodes']
+    graph = "graph.json"
     start_node = "A"
     
+    if len(sys.argv) > 1:
+        graph = sys.argv[1]
+    if not os.path.exists(graph):
+        print(f"Graph file does not exist: {graph}")
+        sys.exit(1)
+
+    if len(sys.argv) > 2:
+        start_node = sys.argv[2].strip()
+        
+    with open(graph, 'r') as f:
+        data = json.load(f)
+
+    original_graph = data['graph']
+    nodes = data['nodes']
+    if start_node not in nodes:
+        print(f"Your start node does not exist: {start_node}")
+        sys.exit(2)
+        
     predecessors = dijkstra(original_graph, start_node)
     
     # Initialize the new graph with all nodes
@@ -47,6 +67,5 @@ if __name__ == '__main__':
         "nodes": nodes,
         "graph": dijk_graph
     }
-    
-    with open('dijk-solution.json', 'w') as f:
-        json.dump(output_data, f, indent=2)
+
+    print(json.dumps(output_data, indent=0))

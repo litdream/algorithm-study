@@ -89,3 +89,11 @@
 
 # debug information files
 *.dwo
+
+#=====
+# Ray's stuff
+#=====
+
+*~
+*#
+
